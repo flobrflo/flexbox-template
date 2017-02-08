@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rol Patrol Flexbox</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta name="description" content="common page build with flexbox" />
+        <meta name="keywords" content="flexbox, sample, responsive, mobile first" />
+        <style>
+            /**********************************************************/
+            /*  IN THIS PAGE YOU CAN FIND SOME CONFIGURATION TO
+                RE-BUILD THE TEMPLATE.
+                ALL CHANGES YOU CAN MAKE ARE BEEETWEEN TWO TAGS 
+                INDICATED BELOW
+                YOU CAN COMMENT OR UNCOMMENT TO APPLY MODIFICATIONS
+            /**********************************************************/
+            
+            /** CONFIGURATION WITH HEADER AND FOOTER FIXED => CWHAFF **/
+            /** CONFIGURATION WITH BIG CONTENT => CWBC **/
+            /** ADD IMAGE BEFORE HEADER => AIBH **/
+            /** FIXE HEADER ON SCROLL => FHOS **/
+            
+            body { padding: 0; margin: 0;  display: flex; flex-direction: column; background:black; min-height: 100vh; }
+            
+            .content { display:flex; flex: 1 1 auto; flex-direction: column; }
+            .content-1 { background-color: green; flex: 1 1 auto; }
+            .content-2 { background-color: blue; flex: 1 1 auto; }
+            .content-3 { background-color: pink; flex: 4 1 auto; }
+            
+            header  { flex: 0 80px; display: flex; order: -1; background-color: red; }
+            header.over-the-top { position: fixed; top: 0; width: 100vw; }
+            
+            footer { flex: 0 50px; display: flex; background-color: yellow; }
+            
+            /** CWHAFF ** /
+            .content { display:flex; flex: 1; flex-direction: column; overflow: auto; }
+            /** CWHAFF **/
+            
+            /** AIBH **/
+            .big-img-header { display: none; }
+            /** AIBH **/
+            
+            /** CWBC **/
+            .content div { min-height: 600px; }
+            /** CWBC **/
+            
+            @media (min-width: 768px) and (min-height: 800px) {
+                
+                /** AIBH  */
+                .big-img-header { flex: 0 92vh; display: flex; order: -1; background-color: purple; }
+                /** AIBH **/
+                
+            }
+        </style>
+    </head>
+    <body>
+        <!-- AIBH -->
+        <div class="big-img-header"></div>
+        <!-- AIBH -->
+        <header>
+            <nav>header</nav>
+        </header>
+        <div class="content">
+            <div class="content-1">test </div>
+            <div class="content-2">test <br></div>
+            <div class="content-3"></div>
+        </div>
+        <footer>footer <br> footer</footer>
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+            $(function() {
+                /** FHOS **/
+                var heightHeader = $('header').height();
+                var toCompare = heightHeader;
+                
+                $(window).scroll(function() {
+                    /** AIBH **/
+                    var heightImgHeader = $('.big-img-header').height();
+                    toCompare = heightHeader + heightImgHeader;
+                    /** AIBH **/
+                
+                    if($(window).scrollTop() > toCompare) {
+                        $('header').addClass('over-the-top');
+                    } else if ($(window).scrollTop() < toCompare) {
+                        $('header').removeClass('over-the-top');
+                    }
+                });
+                /** FHOS **/
+            });
+        </script>
+        <!-- JS -->
+    </body>
+</html>
